@@ -6,14 +6,20 @@ html {
   background-size: cover; }
 
 .top-nav-collapse {
-  background-color: #3949ab !important; }
+  background-color: #3949ab !important;
+}
 
-.navbar:not(.top-nav-collapse) {
-  background: transparent !important; }
+#navbar {
+  transition: background-color 0.3s ease-in-out; /* Transición suave para el cambio de color */
+  background-color: transparent; /* Inicialmente transparente */
+}
 
-@media (max-width: 768px) {
-  .navbar:not(.top-nav-collapse) {
-    background: #3949ab !important; } }
+#intro + section ~ #navbar {
+  background-color: #007bff !important; /* Color celeste */
+  background:  #007bff !important;
+  box-shadow: 0px 2px 5px rgba(87, 104, 182, 0.3); /* Sombra opcional para destacar */
+}
+
 
 #intro .h6 {
   font-weight: 300;
