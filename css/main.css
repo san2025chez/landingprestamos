@@ -12,14 +12,31 @@ html {
 #navbar {
   transition: background-color 0.3s ease-in-out; /* Transición suave para el cambio de color */
   background-color: transparent; /* Inicialmente transparente */
+  box-shadow: none !important; /* Eliminar cualquier sombra */
+  border: none !important; /* Eliminar cualquier borde */
 }
 
 #intro + section ~ #navbar {
   background-color: #007bff !important; /* Color celeste */
-  background:  #007bff !important;
-  box-shadow: 0px 2px 5px rgba(87, 104, 182, 0.3); /* Sombra opcional para destacar */
+  background: #007bff !important;
+  box-shadow: none !important; /* Eliminar cualquier sombra */
+  border: none !important; /* Eliminar cualquier borde */
 }
 
+.bg-dark {
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.navbar {
+  box-shadow: none !important; /* Eliminar cualquier sombra que pueda venir de bootstrap */
+  border: none !important; /* Eliminar cualquier borde que pueda venir de bootstrap */
+}
+
+.navbar.fixed-top {
+  box-shadow: none !important;
+  border: none !important;
+}
 
 #intro .h6 {
   font-weight: 300;
@@ -72,3 +89,23 @@ html {
 
 #pricing ul li {
   font-size: 1.1em; }
+
+/* Estilos adicionales para garantizar un navbar profesional sin bordes ni sombras */
+.navbar, .navbar-expand-lg, .navbar-dark, .fixed-top {
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  border-bottom: none !important;
+  outline: none !important;
+}
+
+/* Asegurar que el navbar se vea bien en todos los navegadores */
+.navbar::after, .navbar::before,
+.navbar-expand-lg::after, .navbar-expand-lg::before,
+.navbar-dark::after, .navbar-dark::before,
+.fixed-top::after, .fixed-top::before {
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+}

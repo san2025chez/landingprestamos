@@ -107,9 +107,19 @@
     const navbar = document.getElementById('navbar');
     if (window.scrollY > document.getElementById('intro').offsetHeight) {
       navbar.classList.add('bg-dark');
+      navbar.style.boxShadow = 'none';
+      navbar.style.border = 'none';
     } else {
       navbar.classList.remove('bg-dark');
+      navbar.style.boxShadow = 'none';
+      navbar.style.border = 'none';
     }
+  });
+  
+  window.addEventListener('load', function() {
+    const navbar = document.getElementById('navbar');
+    navbar.style.boxShadow = 'none';
+    navbar.style.border = 'none';
   });
 </script>
 <section class="py-5" id="projects">
