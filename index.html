@@ -1,270 +1,1519 @@
 <!DOCTYPE html>
-<html lang="en-US">
-  <head>
+<html lang="es">
+<head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PRESTAMOS PERICO</title><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="css/bootstrap.min.css?ver=1.1.0" rel="stylesheet">
-    <link href="css/mdb.min.css?ver=1.1.0" rel="stylesheet">
-    <link href="css/main.css?ver=1.1.0" rel="stylesheet">
-     <!-- Bootstrap CSS -->
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRÉSTAMOS PERICO | Empeños y Préstamos Rápidos</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+      :root {
+          --primary: #1a56db;
+          --primary-dark: #0e4a9c;
+          --secondary: #0e9f6e;
+          --accent: #9061f9;
+          --dark: #1f2937;
+          --light: #f9fafb;
+          --gray: #6b7280;
+          --navbar-height: 80px;
+      }
+      
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+      
+      body {
+          font-family: 'Poppins', sans-serif;
+          color: var(--dark);
+          line-height: 1.6;
+          overflow-x: hidden;
+          background-color: var(--light);
+      }
+      
+      h1, h2, h3, h4, h5, h6 {
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 700;
+      }
+      
+      /* ===== NAVBAR PROFESIONAL ===== */
+      .navbar {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          padding: 15px 0;
+          transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+          z-index: 1000;
+          background: transparent;
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+      }
+      
+      .navbar.scrolled {
+          background: rgba(255, 255, 255, 0.95);
+          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+          padding: 10px 0;
+      }
+      
+      .navbar-brand {
+          font-weight: 800;
+          font-size: 1.8rem;
+          color: white !important;
+          transition: all 0.3s ease;
+          display: flex;
+          align-items: center;
+      }
+      
+      .navbar.scrolled .navbar-brand {
+          color: var(--primary) !important;
+      }
+      
+      .navbar-toggler {
+          border: none;
+          padding: 4px 8px;
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 4px;
+      }
+      
+      .navbar-toggler:focus {
+          box-shadow: none;
+      }
+      
+      .navbar-toggler-icon {
+          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      }
+      
+      .navbar.scrolled .navbar-toggler-icon {
+          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(26, 86, 219, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      }
+      
+      .nav-link {
+          font-weight: 500;
+          margin: 0 8px;
+          position: relative;
+          color: rgba(255, 255, 255, 0.9) !important;
+          transition: all 0.3s ease;
+          padding: 8px 12px !important;
+          border-radius: 6px;
+      }
+      
+      .nav-link:hover, 
+      .nav-link.active {
+          color: white !important;
+          background: rgba(255, 255, 255, 0.15);
+      }
+      
+      .navbar.scrolled .nav-link {
+          color: var(--dark) !important;
+      }
+      
+      .navbar.scrolled .nav-link:hover,
+      .navbar.scrolled .nav-link.active {
+          color: var(--primary) !important;
+          background: rgba(26, 86, 219, 0.1);
+      }
+      
+      .nav-link::after {
+          content: '';
+          position: absolute;
+          width: 0;
+          height: 2px;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: white;
+          transition: width 0.3s ease;
+      }
+      
+      .nav-link:hover::after,
+      .nav-link.active::after {
+          width: 70%;
+      }
+      
+      .navbar.scrolled .nav-link::after {
+          background-color: var(--primary);
+      }
+      
+      .btn-whatsapp {
+          background-color: #25D366;
+          color: white;
+          border-radius: 50px;
+          padding: 10px 20px;
+          font-weight: 600;
+          transition: all 0.3s ease;
+          border: none;
+      }
+      
+      .btn-whatsapp:hover {
+          background-color: #128C7E;
+          transform: translateY(-2px);
+          box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
+      }
+      
+      /* ===== NAVBAR ENHANCEMENTS ===== */
+      .navbar {
+          backdrop-filter: saturate(120%) blur(12px);
+          -webkit-backdrop-filter: saturate(120%) blur(12px);
+      }
+      .navbar::after {
+          content: '';
+          position: absolute;
+          left: 0; right: 0; bottom: 0;
+          height: 1px;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+          pointer-events: none;
+      }
+      .navbar.scrolled::after {
+          background: linear-gradient(90deg, transparent, rgba(26,86,219,0.25), transparent);
+      }
+      .navbar .navbar-brand .brand-highlight {
+          background: linear-gradient(90deg, #60a5fa, #22d3ee 40%, #a78bfa);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+      }
+      .btn-cta {
+          background: linear-gradient(90deg, #2563eb, #7c3aed);
+          color: #fff;
+          border: none;
+          border-radius: 999px;
+          padding: 10px 18px;
+          font-weight: 700;
+          box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+          transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          text-decoration: none;
+      }
+      .btn-cta:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 16px 32px rgba(124, 58, 237, 0.25);
+          color: #fff;
+          opacity: 0.95;
+      }
+      .navbar.scrolled .btn-cta {
+          box-shadow: 0 8px 22px rgba(37, 99, 235, 0.18);
+      }
+      
+      /* Floating WhatsApp Button */
+      .whatsapp-float {
+          position: fixed;
+          right: 18px;
+          bottom: 18px;
+          width: 56px;
+          height: 56px;
+          border-radius: 50%;
+          background: #25D366;
+          color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 14px 28px rgba(37, 211, 102, 0.28), 0 10px 10px rgba(37, 211, 102, 0.18);
+          z-index: 1050;
+          transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+          text-decoration: none;
+      }
+      .whatsapp-float:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 18px 40px rgba(37, 211, 102, 0.35), 0 12px 12px rgba(37, 211, 102, 0.2);
+          color: #fff;
+      }
+      .whatsapp-float i { font-size: 1.6rem; }
+      @media (max-width: 576px) {
+          .whatsapp-float { width: 52px; height: 52px; right: 14px; bottom: 14px; }
+      }
+      
+      /* ===== HERO SECTION MEJORADA ===== */
+      .hero {
+          background: linear-gradient(135deg, rgba(26, 86, 219, 0.85) 0%, rgba(37, 99, 235, 0.8) 100%), url('/img/prestamos5.jpg');
+          background-size: cover;
+          background-position: center;
+          background-attachment: fixed;
+          padding: 180px 0 100px;
+          color: white;
+          position: relative;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          overflow: hidden;
+      }
+      
+      .hero::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='0.1' d='M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,224C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+          background-size: cover;
+          background-position: bottom;
+          opacity: 0.2;
+      }
+      
+      .hero-content {
+          position: relative;
+          z-index: 2;
+      }
+      
+      .hero-title {
+          font-size: 3.5rem;
+          font-weight: 800;
+          margin-bottom: 20px;
+          line-height: 1.2;
+          animation: fadeInUp 0.8s ease-out;
+      }
+      
+      .hero-subtitle {
+          font-size: 1.5rem;
+          margin-bottom: 30px;
+          font-weight: 300;
+          animation: fadeInUp 0.8s ease-out 0.2s both;
+      }
+      
+      .hero-buttons {
+          animation: fadeInUp 0.8s ease-out 0.4s both;
+      }
+      
+      .btn-hero {
+          padding: 12px 30px;
+          border-radius: 50px;
+          font-weight: 600;
+          transition: all 0.3s ease;
+          margin-right: 15px;
+          margin-bottom: 15px;
+      }
+      
+      .btn-hero-primary {
+          background: white;
+          color: var(--primary);
+          border: 2px solid white;
+      }
+      
+      .btn-hero-primary:hover {
+          background: transparent;
+          color: white;
+          transform: translateY(-3px);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+      
+      .btn-hero-outline {
+          background: transparent;
+          color: white;
+          border: 2px solid white;
+      }
+      
+      .btn-hero-outline:hover {
+          background: white;
+          color: var(--primary);
+          transform: translateY(-3px);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+      
+      .hero-scroll-indicator {
+          position: absolute;
+          bottom: 30px;
+          left: 50%;
+          transform: translateX(-50%);
+          color: white;
+          animation: bounce 2s infinite;
+      }
+      
+      .hero-scroll-indicator i {
+          font-size: 2rem;
+      }
+      
+      /* Floating elements for visual interest */
+      .floating-element {
+          position: absolute;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.1);
+          animation: float 6s ease-in-out infinite;
+      }
+      
+      .floating-element:nth-child(1) {
+          width: 80px;
+          height: 80px;
+          top: 20%;
+          left: 10%;
+          animation-delay: 0s;
+      }
+      
+      .floating-element:nth-child(2) {
+          width: 50px;
+          height: 50px;
+          top: 60%;
+          right: 15%;
+          animation-delay: 1s;
+      }
+      
+      .floating-element:nth-child(3) {
+          width: 70px;
+          height: 70px;
+          bottom: 30%;
+          left: 20%;
+          animation-delay: 2s;
+      }
+      
+      /* Section Styles */
+      section {
+          padding: 100px 0;
+          position: relative;
+      }
+      
+      .section-title {
+          text-align: center;
+          margin-bottom: 60px;
+      }
+      
+      .section-title h2 {
+          font-size: 2.8rem;
+          margin-bottom: 15px;
+          position: relative;
+          display: inline-block;
+      }
+      
+      .section-title h2::after {
+          content: '';
+          position: absolute;
+          width: 80px;
+          height: 4px;
+          background: var(--primary);
+          bottom: -15px;
+          left: 50%;
+          transform: translateX(-50%);
+          border-radius: 2px;
+      }
+      
+      .section-title p {
+          font-size: 1.2rem;
+          color: var(--gray);
+          max-width: 700px;
+          margin: 0 auto;
+      }
+      /* Unified section description typography */
+      .section-desc {
+          font-family: 'Poppins', sans-serif;
+          font-weight: 400;
+          font-size: 1.15rem;
+          color: var(--gray);
+          line-height: 1.7;
+          max-width: 760px;
+          margin: 0 auto;
+      }
+      @media (max-width: 768px) {
+          .section-desc { font-size: 1.05rem; }
+      }
+      
+      /* Features Section */
+      .feature-card {
+          background: white;
+          border-radius: 15px;
+          padding: 30px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+          transition: all 0.3s ease;
+          height: 100%;
+          text-align: center;
+          opacity: 0;
+          transform: translateY(50px);
+      }
+      
+      .feature-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
+      
+      .feature-icon {
+          width: 80px;
+          height: 80px;
+          background: rgba(26, 86, 219, 0.1);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto 25px;
+          font-size: 30px;
+          color: var(--primary);
+      }
+      
+      /* Items Section */
+      .items-section {
+          background: #f8fafc;
+      }
+      
+      .item-card {
+          background: white;
+          border-radius: 15px;
+          overflow: hidden;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+          transition: all 0.3s ease;
+          height: 100%;
+          opacity: 0;
+          transform: translateY(50px);
+      }
+      
+      .item-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
+      
+      .item-img {
+          height: 200px;
+          overflow: hidden;
+      }
+      
+      .item-img img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.5s ease;
+      }
+      
+      .item-card:hover .item-img img {
+          transform: scale(1.05);
+      }
+      
+      .item-content {
+          padding: 25px;
+      }
+      
+      .item-title {
+          font-size: 1.3rem;
+          margin-bottom: 10px;
+          color: var(--dark);
+      }
+      
+      .item-desc {
+          color: var(--gray);
+          margin-bottom: 15px;
+      }
+      
+      /* Products Section */
+      .products-section {
+          background: linear-gradient(180deg, #ffffff 0%, #f6f7fb 100%);
+      }
+      .product-card {
+          background: white;
+          border-radius: 16px;
+          overflow: hidden;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+          transition: transform 0.35s ease, box-shadow 0.35s ease;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          opacity: 0;
+          transform: translateY(50px);
+      }
+      .product-card:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 18px 40px rgba(26, 86, 219, 0.15);
+      }
+      .product-media {
+          position: relative;
+          height: 230px;
+          background: #eef2ff;
+          overflow: hidden;
+      }
+      .product-media img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transform: scale(1.02);
+          transition: transform 0.6s ease;
+      }
+      .product-card:hover .product-media img {
+          transform: scale(1.07);
+      }
+      .product-badges {
+          position: absolute;
+          top: 12px;
+          left: 12px;
+          display: flex;
+          gap: 8px;
+          z-index: 2;
+      }
+      .badge-pill {
+          backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px);
+          border-radius: 999px;
+          padding: 6px 10px;
+          font-size: 0.75rem;
+          font-weight: 600;
+          color: #0f172a;
+          background: rgba(255,255,255,0.85);
+          border: 1px solid rgba(15, 23, 42, 0.08);
+      }
+      .product-content {
+          padding: 22px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          flex: 1;
+      }
+      .product-title {
+          font-size: 1.1rem;
+          font-weight: 700;
+          color: #0f172a;
+          margin: 0;
+      }
+      .product-desc {
+          color: var(--gray);
+          font-size: 0.95rem;
+          margin: 0;
+      }
+      .product-meta {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+          margin-top: auto;
+      }
+      .price {
+          font-weight: 800;
+          font-size: 1.2rem;
+          color: var(--primary);
+      }
+      .btn-product {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          border-radius: 999px;
+          border: 2px solid var(--primary);
+          color: var(--primary);
+          padding: 8px 14px;
+          font-weight: 600;
+          transition: all 0.25s ease;
+          text-decoration: none;
+      }
+      .btn-product:hover {
+          background: var(--primary);
+          color: #fff;
+          transform: translateY(-2px);
+          box-shadow: 0 10px 20px rgba(26, 86, 219, 0.2);
+      }
+      @media (max-width: 576px) {
+          .product-media { height: 190px; }
+      }
+      
+      /* About Section */
+      .about-img {
+          border-radius: 15px;
+          overflow: hidden;
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
+      
+      .about-content .feature {
+          display: flex;
+          align-items: center;
+          margin-bottom: 20px;
+      }
+      
+      .about-content .feature-icon {
+          width: 50px;
+          height: 50px;
+          margin: 0 20px 0 0;
+          flex-shrink: 0;
+      }
+      
+      /* About - Enhanced */
+      .about-section {
+          background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+      }
+      .about-card {
+          background: white;
+          border-radius: 16px;
+          padding: 28px;
+          box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+          border: 1px solid rgba(15, 23, 42, 0.06);
+          opacity: 0;
+          transform: translateY(50px);
+      }
+      .about-title {
+          font-size: 2rem;
+          margin-bottom: 12px;
+      }
+      .about-lead {
+          font-size: 1.1rem;
+          color: var(--gray);
+      }
+      .about-features {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0,1fr));
+          gap: 14px 18px;
+          margin-top: 18px;
+      }
+      .about-feature {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 10px 12px;
+          background: rgba(26, 86, 219, 0.06);
+          border: 1px solid rgba(26, 86, 219, 0.12);
+          border-radius: 12px;
+          color: #0f172a;
+          opacity: 0;
+          transform: translateY(50px);
+      }
+      .about-feature i {
+          color: var(--primary);
+      }
+      .about-stats {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          margin-top: 18px;
+      }
+      .stat-pill {
+          background: rgba(15,23,42,0.04);
+          border: 1px solid rgba(15,23,42,0.08);
+          color: #0f172a;
+          border-radius: 999px;
+          padding: 8px 12px;
+          font-weight: 600;
+          font-size: 0.9rem;
+      }
+      @media (max-width: 768px) {
+          .about-features { grid-template-columns: 1fr; }
+      }
+      
+      /* Testimonials Section */
+      .testimonials-section {
+          background: linear-gradient(to right, #1a56db, #0e4a9c);
+          color: white;
+      }
+      
+      .testimonial-card {
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 15px;
+          padding: 30px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+          margin: 20px 0;
+          position: relative;
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          opacity: 0;
+          transform: translateY(50px);
+      }
+      
+      .testimonial-card::before {
+          content: '"';
+          font-size: 6rem;
+          color: rgba(255, 255, 255, 0.1);
+          position: absolute;
+          top: 20px;
+          left: 20px;
+          line-height: 1;
+      }
+      
+      .testimonial-text {
+          position: relative;
+          z-index: 2;
+          font-style: italic;
+          margin-bottom: 20px;
+      }
+      
+      .testimonial-author {
+          display: flex;
+          align-items: center;
+      }
+      
+      .author-avatar {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          background: var(--primary);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          font-weight: bold;
+          margin-right: 15px;
+      }
+      
+      /* FAQ Section */
+      .faq-section {
+          background: #f8fafc;
+      }
+      
+      .accordion-button:not(.collapsed) {
+          background-color: rgba(26, 86, 219, 0.1);
+          color: var(--primary);
+          font-weight: 600;
+      }
+      
+      .accordion-button:focus {
+          box-shadow: none;
+          border-color: rgba(26, 86, 219, 0.2);
+      }
+      
+      /* FAQ - Enhanced */
+      .faq-card {
+          background: white;
+          border-radius: 16px;
+          padding: 24px;
+          box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+          border: 1px solid rgba(15, 23, 42, 0.06);
+          opacity: 0;
+          transform: translateY(50px);
+      }
+      .accordion-item {
+          border: 1px solid rgba(15, 23, 42, 0.08) !important;
+          border-radius: 12px !important;
+          overflow: hidden;
+          margin-bottom: 12px;
+          background: #ffffff;
+      }
+      .accordion-button {
+          font-weight: 600;
+          color: #0f172a;
+      }
+      .accordion-button::after {
+          filter: hue-rotate(190deg) saturate(140%);
+      }
+      .accordion-body {
+          color: var(--gray);
+      }
+      
+      /* Contact Section */
+      .contact-section {
+          background: linear-gradient(to right, #1a56db, #0e4a9c);
+          color: white;
+      }
+      
+      .contact-info {
+          text-align: center;
+          margin-bottom: 30px;
+      }
+      
+      .contact-icon {
+          font-size: 2.5rem;
+          margin-bottom: 15px;
+          color: white;
+      }
+      
+      .map-container {
+          border-radius: 15px;
+          overflow: hidden;
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
+      
+      /* Footer */
+      footer {
+          background: var(--dark);
+          color: white;
+          padding: 70px 0 30px;
+      }
+      
+      .footer-links {
+          list-style: none;
+          padding: 0;
+      }
+      
+      .footer-links li {
+          margin-bottom: 10px;
+      }
+      
+      .footer-links a {
+          color: #d1d5db;
+          text-decoration: none;
+          transition: color 0.3s ease;
+      }
+      
+      .footer-links a:hover {
+          color: white;
+      }
+      
+      .social-links a {
+          width: 40px;
+          height: 40px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 50%;
+          color: white;
+          margin-right: 10px;
+          transition: all 0.3s ease;
+      }
+      
+      .social-links a:hover {
+          background: var(--primary);
+          transform: translateY(-3px);
+      }
+      
+      /* Animations */
+      @keyframes fadeInUp {
+          from {
+              opacity: 0;
+              transform: translateY(30px);
+          }
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+      
+      @keyframes bounce {
+          0%, 20%, 50%, 80%, 100% {
+              transform: translateY(0) translateX(-50%);
+          }
+          40% {
+              transform: translateY(-20px) translateX(-50%);
+          }
+          60% {
+              transform: translateY(-10px) translateX(-50%);
+          }
+      }
+      
+      @keyframes float {
+          0% {
+              transform: translateY(0) rotate(0deg);
+          }
+          50% {
+              transform: translateY(-20px) rotate(10deg);
+          }
+          100% {
+              transform: translateY(0) rotate(0deg);
+          }
+      }
+      
+      /* Responsive Styles */
+      @media (max-width: 992px) {
+          .navbar-collapse {
+              background: rgba(255, 255, 255, 0.98);
+              padding: 20px;
+              border-radius: 10px;
+              margin-top: 10px;
+              box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+          }
+          
+          .navbar.scrolled .navbar-collapse {
+              background: white;
+          }
+          
+          .nav-link {
+              color: var(--dark) !important;
+              margin: 5px 0;
+              text-align: center;
+          }
+          
+          .nav-link::after {
+              display: none;
+          }
+          
+          .hero-title {
+              font-size: 2.8rem;
+          }
+          
+          .hero-subtitle {
+              font-size: 1.2rem;
+          }
+          
+          .section-title h2 {
+              font-size: 2.2rem;
+          }
+      }
+      
+      @media (max-width: 768px) {
+          .navbar-brand {
+              font-size: 1.5rem;
+          }
+          
+          .hero-title {
+              font-size: 2.3rem;
+          }
+          
+          .btn-hero {
+              display: block;
+              width: 100%;
+              margin-right: 0;
+          }
+          
+          .hero-buttons .d-flex {
+              flex-direction: column;
+          }
+          
+          .section-title h2 {
+              font-size: 2rem;
+          }
+      }
+      
+      @media (max-width: 576px) {
+          .hero {
+              padding: 150px 0 80px;
+          }
+          
+          .hero-title {
+              font-size: 2rem;
+          }
+          
+          .section-title h2 {
+              font-size: 1.8rem;
+          }
+          
+          .floating-element {
+              display: none;
+          }
+          
+          section {
+              padding: 70px 0;
+          }
+      }
 
-  </head>
-  <body id="top">
-    <header>
-      <!-- Navbar-->
-      <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="navbar">
-  <div class="container"><a class="navbar-brand" href="#"><strong>PRESTAMOS PERICO</strong></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-    <div class="collapse navbar-collapse" id="navbarContent">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a class="nav-link active" href="#about">¿Como funciona?</a></li>
-        <li class="nav-item"><a class="nav-link" href="#projects">¿Quienes Somos?</a></li>
-        <li class="nav-item"><a class="nav-link" href="#pricing">Preguntas frecuentes</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">Contactos</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-<!-- Intro Section-->
-<section class="view hm-gradient" id="intro">
-  <div class="site-bg-img d-flex align-items-center justify-content-center">
-    <div class="container">
-      <div class="row no-gutters justify-content-center">
-        <div class="col-md-10 col-lg-8 text-center margins">
-          <div class="white-text">
-            <div class="wow fadeInLeft" data-wow-delay="0.3s">
-              <h1 class="h1-responsive font-weight-bold mt-sm-5" style="font-size: 1.5rem;">Prestamos personales con Empeño</h1>
-              <div class="h6" style="font-size: 1rem;">
-                 Nuestra mision es brindar el servicio de prestamos personales de la manera mas facil!!
-              </div>
-            </div><br>
-            <div class="wow fadeInLeft" data-wow-delay="0.3s"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<style>
-  @media (max-width: 768px) {
-    .margins {
-      margin-right: 1rem;
-      margin-left: 1rem;
-      text-align: center;
-      font-size: 0.8rem;
-    }
-  }
-</style>
-</header>
-<div id="content">
-
-<section class="text-center py-5 grey lighten-4" id="about">
-  <div class="container">
-    <div class="wow fadeIn">
-      <h2 class="h1 pt-5 pb-3">¿Como Funciona?</h2>
-      <p class="px-5 mb-5 pb-3 lead blue-grey-text">
-        Para Solicitar el Prestamos debes ser mayor de 18 años
-      </p>
-    </div>
-    <div class="row">
-      <div class="col-md-3 mb-5 wow fadeInUp" data-wow-delay=".3s"><i class="fa fa-dashboard fa-3x orange-text"></i>
-        <h3 class="h4 mt-3">1. Nos traes tu artículo       
-          </h3>
-        <p class="mt-3 blue-grey-text">
-          Recibimos todo tipo de artículos registrables y no registrables, en buen estado y de buena procedencia.
-        </p>
-      </div>
-      <div class="col-md-3 mb-5 wow fadeInUp" data-wow-delay=".4s"><i class="fa fa-comments-o fa-3x cyan-text"></i>
-        <h3 class="h4 mt-3">2. Acordamos con vos el precio del prestamo.</h3>
-        <p class="mt-3 blue-grey-text">
-          Con seriedad y sin requisitos, acordamos en contratos las condiciones de retroventa (precios y plazos).
-        </p>
-      </div>
-      <div class="col-md-3 mb-5 wow fadeInUp" data-wow-delay=".4s"><i class="fa fa-money fa-3x deep-purple-text"></i>
-        <h3 class="h4 mt-3">3. Te llevas el efectivo en el momento.
-         </h3>
-        <p class="mt-3 blue-grey-text">
-          Dinero rápido en 15 minutos  ¡Sin deudas y sin vender! (nuestro servicio te permite recuperar tu artículo).
-        </p>
-      </div>
-      <div class="col-md-3 mb-5 wow fadeInUp" data-wow-delay=".5s"><i class="fa fa-cubes fa-3x red-text"></i>
-        <h3 class="h4 mt-3">4. Recuperá tu artículo.</h3>
-        <p class="mt-3 blue-grey-text">
-          Tenés 30 días para recomprar tu artículo ó renovar tu contrato por un nuevo período de 30 días las veces que quieras o necesites.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<script>
-  document.addEventListener('scroll', function() {
-    const navbar = document.getElementById('navbar');
-    if (window.scrollY > document.getElementById('intro').offsetHeight) {
-      navbar.classList.add('bg-dark');
-      navbar.style.boxShadow = 'none';
-      navbar.style.border = 'none';
-    } else {
-      navbar.classList.remove('bg-dark');
-      navbar.style.boxShadow = 'none';
-      navbar.style.border = 'none';
-    }
-  });
-  
-  window.addEventListener('load', function() {
-    const navbar = document.getElementById('navbar');
-    navbar.style.boxShadow = 'none';
-    navbar.style.border = 'none';
-  });
-</script>
-<section class="py-5" id="projects">
-  <div class="container">
-    <div class="wow fadeIn">
-      <h2 class="text-center h1 my-4">¿Quienes Somos?</h2>
-      <p class="px-5 mb-5 pb-3 lead blue-grey-text text-center">
-        Es una empresa especializada en el otorgamiento de préstamos personales, creada en al año 2021 con el objetivo de desarrollar  servicios financieros de calidad, con el respaldo de un equipo profesional que nos permita cumplir con las expectativas más exigentes de nuestros clientes.
-        Nuestro propósito es brindar soluciones creativas e innovadoras, aplicando tecnología de vanguardia para ofrecer siempre préstamos personales competitivos, con la mejor oferta del mercado, el servicio más cómodo y un entorno de máxima seguridad.
-        Nos diferenciamos de nuestros competidores por ser una alternativa al alcance de los clientes y con amplios beneficios
-      </p>
-    </div>
-    <hr/>
-  </div>
-</section>
-<section class="text-center py-5 indigo darken-1 text-white" id="pricing">
-  <div class="container">
-    <div class="wow fadeIn">
-      <h2 class="h1 pt-5 pb-3">Preguntas Frecuentes</h2>
-      <p class="px-5 mb-5 pb-3 lead">
-   <!--      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet numquam iure provident voluptate esse quasi,
-        veritatis totam voluptas nostrum quisquam eum porro a pariatur accusamus veniam. -->
-      </p>
-    </div>
-    <div class="accordion accordion-flush" id="accordionFlushExample">
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="flush-headingOne">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-            ¿Cuales son los requisitos para acceder al efectivo de Prestamos Perico?
-          </button>
-        </h2>
-        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-          <div class="accordion-body"><font color="black">Ser mayor de 18 años
-
-            Traer tu DNI vigente y en buenas condiciones.
-            
-            Traer alguno de los artículos que nosotros custodiamos y que cumpla con las condiciones que exigimos.</font></div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="flush-headingTwo">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-            ¿A cuánto efectivo puedo acceder?
-          </button>
-        </h2>
-        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-          <div class="accordion-body"><font color="black">Es según la tasación del artículo a custodiar, mientras más alto es su valor, a más efectivo accedes.</font></div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="flush-headingThree">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-            ¿Cómo recibo el efectivo?
-          </button>
-        </h2>
-        <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-          <div class="accordion-body"><font color="black">Lo podes recibir en nuestras oficinas </font></div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="flush-headingFour">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseThree">
-            ¿Cuánto tiempo puedo tener mi artículo guardado?
-          </button>
-        </h2>
-        <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
-          <div class="accordion-body"><font color="black">30 días, renovable las veces que quieras en periodos iguales de 30 días. </font></div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="flush-headingFive">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseThree">
-            Cómo retiro mi artículo guardado?
-          </button>
-        </h2>
-        <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
-          <div class="accordion-body"><font color="black">Acerándote a nuestras oficinas, previo pago de nuestros servicios de guarda. </font></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section id="contact" style="background-image:url('img/prestamos5.jpg')">
-  <div class="rgba-black-strong py-5">
-    <div class="container">
-      <div class="wow fadeIn">
-        <h2 class="h1 text-white pt-5 pb-3 text-center">Contactanos</h2>
-        <p class="text-white px-5 mb-5 pb-3 lead text-center">
-          Estamos ubicados en Ciudad Perico Jujuy!!
-        </p>
-      </div>
-      <div class="card mb-5 wow fadeInUp" data-wow-delay=".4s">
-        <div class="card-body p-5">
-          <div class="row">
-            <div class="col-md-8">
-              <div class="embed-responsive embed-responsive-16by9">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d549.9575523634095!2d-65.10809060688953!3d-24.390911380213275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x941bacd787f54e0d%3A0x6fa449e0fe02ce58!2sAv.%20Buenos%20Aires%2050%2C%20Perico%2C%20Jujuy!5e0!3m2!1ses!2sar!4v1675526800018!5m2!1ses!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-              <!--   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3055.624283407442!2d-65.10855294921775!3d-24.38929846483291!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x941bacd9c5cca46b%3A0x10f9e53c469a3f9d!2sAv.%20Buenos%20Aires%2C%20Perico%2C%20Jujuy!5e0!3m2!1ses-419!2sar!4v1666229258980!5m2!1ses-419!2sar" width="400" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
-              </div>
-            
-             
-            </div>
-            <div class="col-md-4">
-              <ul class="list-unstyled text-center">
-                <li class="mt-4"><i class="fa fa-map-marker indigo-text fa-2x"></i>
-                  <p class="mt-2">Perico, Jujuy </p>
-                </li>
-                <li class="mt-4"><i class="fa fa-whatsapp indigo-text fa-2x" aria-hidden="true"></i>
-               <!--  </i><i class="fa fa-phone indigo-text fa-2x"></i> -->
-                  <p class="mt-2">  
-                    <a href="https://api.whatsapp.com/send?phone=543885970486&text=Hola!!%20necesito%20un%20prestamo">3885970486</a></p>
-                   
-                  </li>
-                <li class="mt-4"><i class="fa fa-envelope indigo-text fa-2x"></i>
-                  <p class="mt-2">prestamosperico@gmail.com</p>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section></div>
-    <footer class="page-footer indigo black center-on-small-only pt-0 mt-0">
+      /* Desktop navbar sizing refinement */
+      @media (min-width: 992px) {
+          .navbar .container { gap: 24px; }
+          .navbar-brand { font-size: 1.6rem; margin-right: 28px; }
+          .navbar-nav { gap: 6px; }
+          .nav-link {
+              font-size: 0.95rem !important;
+              padding: 6px 10px !important;
+              margin: 0 6px;
+              border-radius: 6px;
+          }
+      }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg">
       <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="mb-5 flex-center"><a class="px-3" href="#"><i class="fa fa-facebook fa-lg white-text"></i></a><a class="px-3" href="https://www.facebook.com/PERICO2022PRESTAMOS"><i class="fa fa-twitter fa-lg white-text"></i></a><a class="px-3" href="#"><i class="fa fa-google-plus fa-lg white-text"></i></a><a class="px-3" href="#"><i class="fa fa-linkedin fa-lg white-text"></i></a></div>
+          <a class="navbar-brand" href="#hero">
+              <i class="fas fa-hand-holding-usd me-2"></i>PRÉSTAMOS <span class="brand-highlight">PERICO</span>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto">
+                  <li class="nav-item">
+                      <a class="nav-link active" href="#hero">Inicio</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#how-it-works">¿Cómo funciona?</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#products">Productos</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#about">¿Quiénes Somos?</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#faq">Preguntas</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#contact">Contacto</a>
+                  </li>
+              </ul>
+              
           </div>
-        </div>
       </div>
-      <div class="footer-copyright text-center py-3 font-small">
-        <div class="container-fluid">
-          <div>&copy; Creado por:  <a href="https://adasoft.com.ar" target="_blank">adasoft.com.ar</a></div>
-        </div>
-      </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </nav>
 
-    <script type="text/javascript" src="scripts/jquery.min.js?ver=1.1.0"></script>
-    <script type="text/javascript" src="scripts/popper.min.js?ver=1.1.0"></script>
-    <script type="text/javascript" src="scripts/bootstrap.min.js?ver=1.1.0"></script>
-    <script type="text/javascript" src="scripts/wow.min.js?ver=1.1.0"></script>
-    <script type="text/javascript" src="scripts/mdb.min.js?ver=1.1.0"></script>
-    <script>new WOW().init();</script>
-  </body>
+  <!-- Hero Section -->
+  <section id="hero" class="hero">
+      <!-- Floating elements for visual interest -->
+      <div class="floating-element"></div>
+      <div class="floating-element"></div>
+      <div class="floating-element"></div>
+      
+      <div class="container">
+          <div class="row align-items-center">
+              <div class="col-lg-7 hero-content">
+                  <h1 class="hero-title">Préstamos rápidos con empeño</h1>
+                  <p class="hero-subtitle">Obtén efectivo inmediato usando tus artículos como garantía. Sin burocracia, sin complicaciones.</p>
+                  <div class="hero-buttons">
+                      <div class="d-flex flex-wrap">
+                          <a href="#how-it-works" class="btn btn-hero btn-hero-primary">¿Cómo funciona?</a>
+                          <a href="https://api.whatsapp.com/send?phone=543885970486&text=Hola!!%20necesito%20un%20prestamo" class="btn btn-hero btn-hero-outline">
+                              <i class="fab fa-whatsapp me-2"></i> Contactar ahora
+                          </a>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-5 d-none d-lg-block">
+                  <!-- Illustration will be here -->
+              </div>
+          </div>
+      </div>
+      
+      <div class="hero-scroll-indicator">
+          <i class="fas fa-chevron-down"></i>
+      </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="py-5">
+      <div class="container">
+          <div class="section-title">
+              <h2>¿Cómo Funciona?</h2>
+              <p class="section-desc">Obtén tu préstamo en 4 simples pasos</p>
+          </div>
+          <div class="row">
+              <div class="col-md-6 col-lg-3 mb-4">
+                  <div class="feature-card">
+                      <div class="feature-icon">
+                          <i class="fas fa-couch"></i>
+                      </div>
+                      <h3 class="h4 mt-3">1. Trae tu artículo</h3>
+                      <p class="mt-3">Aceptamos diversos artículos en buen estado y de buena procedencia como garantía.</p>
+                  </div>
+              </div>
+              <div class="col-md-6 col-lg-3 mb-4">
+                  <div class="feature-card">
+                      <div class="feature-icon">
+                          <i class="fas fa-handshake"></i>
+                      </div>
+                      <h3 class="h4 mt-3">2. Acordamos el valor</h3>
+                      <p class="mt-3">Evaluamos tu artículo y acordamos el monto del préstamo y condiciones de retroventa.</p>
+                  </div>
+              </div>
+              <div class="col-md-6 col-lg-3 mb-4">
+                  <div class="feature-card">
+                      <div class="feature-icon">
+                          <i class="fas fa-money-bill-wave"></i>
+                      </div>
+                      <h3 class="h4 mt-3">3. Recibe tu dinero</h3>
+                      <p class="mt-3">Recibe el efectivo inmediatamente. Todo el proceso toma menos de 30 minutos.</p>
+                  </div>
+              </div>
+              <div class="col-md-6 col-lg-3 mb-4">
+                  <div class="feature-card">
+                      <div class="feature-icon">
+                          <i class="fas fa-undo"></i>
+                      </div>
+                      <h3 class="h4 mt-3">4. Recupera tu artículo</h3>
+                      <p class="mt-3">Paga el préstamo en 30 días y recupera tu artículo, o renueva por otro período.</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- Items We Accept Section -->
+  <section id="items" class="items-section">
+      <div class="container">
+          <div class="section-title">
+              <h2>Artículos que Aceptamos</h2>
+              <p class="section-desc">Recibimos diversos artículos como garantía para tu préstamo</p>
+          </div>
+          <div class="row">
+             <!--  <div class="col-md-6 col-lg-4 mb-4">
+                  <div class="item-card">
+                      <div class="item-img">
+                          <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ad5e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Joyas y relojes">
+                      </div>
+                      <div class="item-content">
+                          <h3 class="item-title">Joyas y Relojes</h3>
+                          <p class="item-desc">Aceptamos joyas de oro, plata, platino y relojes de marca en buen estado.</p>
+                          <small class="text-primary">Hasta $50,000</small>
+                      </div>
+                  </div>
+              </div> -->
+              <div class="col-md-6 col-lg-4 mb-4">
+                  <div class="item-card">
+                      <div class="item-img">
+                          <img src="https://images.unsplash.com/photo-1491933382434-500287f9b54b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Electrónicos">
+                      </div>
+                      <div class="item-content">
+                          <h3 class="item-title">Electrónicos</h3>
+                          <p class="item-desc">Smartphones, tablets, laptops, consolas de videojuegos y otros dispositivos.</p>
+                          <small class="text-primary">Hasta $30,000</small>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-6 col-lg-4 mb-4">
+                  <div class="item-card">
+                      <div class="item-img">
+                          <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Herramientas">
+                      </div>
+                      <div class="item-content">
+                          <h3 class="item-title">Herramientas</h3>
+                          <p class="item-desc">Herramientas profesionales y equipamiento de trabajo en buen estado.</p>
+                          <small class="text-primary">Hasta $25,000</small>
+                      </div>
+                  </div>
+              </div>
+             <!--  <div class="col-md-6 col-lg-4 mb-4">
+                  <div class="item-card">
+                      <div class="item-img">
+                          <img src="https://images.unsplash.com/photo-1571974096035-6c5f5e57aef7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Instrumentos musicales">
+                      </div>
+                      <div class="item-content">
+                          <h3 class="item-title">Instrumentos Musicales</h3>
+                          <p class="item-desc">Guitarras, bajos, teclados, baterías y otros instrumentos en buen estado.</p>
+                          <small class="text-primary">Hasta $40,000</small>
+                      </div>
+                  </div>
+              </div> -->
+              <div class="col-md-6 col-lg-4 mb-4">
+                  <div class="item-card">
+                      <div class="item-img">
+                          <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Bicicletas">
+                      </div>
+                      <div class="item-content">
+                          <h3 class="item-title">Bicicletas y Motos</h3>
+                          <p class="item-desc">Bicicletas, motocicletas y scooters con documentación en regla.</p>
+                          <small class="text-primary">Hasta $70,000</small>
+                      </div>
+                  </div>
+              </div>
+                       </div>
+      </div>
+  </section>
+
+  <!-- Products For Sale Section -->
+  <section id="products" class="products-section">
+      <div class="container">
+          <div class="section-title">
+              <h2>Productos en Venta</h2>
+              <p class="section-desc">Descubrí oportunidades únicas. Cada tarjeta te lleva a la página del producto.</p>
+          </div>
+          <div class="row">
+              <div class="col-md-6 col-lg-4 mb-4">
+                  <div class="product-card">
+                      <div class="product-media">
+                          <div class="product-badges">
+                              <span class="badge-pill">Usado - Excelente</span>
+                              <span class="badge-pill">Garantía 7 días</span>
+                          </div>
+                          <img src="https://images.unsplash.com/photo-1510557880182-3d4d3cba35f6?q=80&w=1200&auto=format&fit=crop" alt="Notebook Gamer">
+                      </div>
+                      <div class="product-content">
+                          <h3 class="product-title">Notebook Gamer 15&quot; i7 16GB</h3>
+                          <p class="product-desc">Alto rendimiento para trabajo y juegos. Batería saludable.</p>
+                          <div class="product-meta">
+                              <span class="price">$420.000</span>
+                              <a class="btn-product" target="_blank" href="https://ejemplo.com/producto/notebook-gamer">
+                                  Ver en tienda <i class="fas fa-arrow-right"></i>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-6 col-lg-4 mb-4">
+                  <div class="product-card">
+                      <div class="product-media">
+                          <div class="product-badges">
+                              <span class="badge-pill">Libre de cuentas</span>
+                          </div>
+                          <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1200&auto=format&fit=crop" alt="Smartphone 128GB">
+                      </div>
+                      <div class="product-content">
+                          <h3 class="product-title">Smartphone 128GB + Cargador</h3>
+                          <p class="product-desc">Pantalla OLED impecable, versión actualizada.</p>
+                          <div class="product-meta">
+                              <span class="price">$180.000</span>
+                              <a class="btn-product" target="_blank" href="https://ejemplo.com/producto/smartphone-128">
+                                  Ver en tienda <i class="fas fa-arrow-right"></i>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-6 col-lg-4 mb-4">
+                  <div class="product-card">
+                      <div class="product-media">
+                          <div class="product-badges">
+                              <span class="badge-pill">Incluye funda</span>
+                          </div>
+                          <img src="https://images.unsplash.com/photo-1491933382434-500287f9b54b?q=80&w=1200&auto=format&fit=crop" alt="Consola de Videojuegos">
+                      </div>
+                      <div class="product-content">
+                          <h3 class="product-title">Consola 1TB + 2 Joysticks</h3>
+                          <p class="product-desc">Lista para jugar. Excelente estado y accesorios.</p>
+                          <div class="product-meta">
+                              <span class="price">$250.000</span>
+                              <a class="btn-product" target="_blank" href="https://ejemplo.com/producto/consola-1tb">
+                                  Ver en tienda <i class="fas fa-arrow-right"></i>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+      </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-5 about-section">
+      <div class="container">
+          <div class="row align-items-center">
+              <div class="col-lg-6">
+                  <div class="about-card">
+                      <h2 class="about-title">¿Quiénes Somos?</h2>
+                      <p class="about-lead section-desc">PRÉSTAMOS PERICO es una empresa especializada en préstamos personales con empeño, creada en 2021. Tecnología + transparencia para darte efectivo cuando más lo necesitás.</p>
+                      <p class="section-desc">Nuestro objetivo es brindar servicios financieros de calidad con procesos claros, rápidos y seguros. Contamos con un equipo profesional que respalda cada tasación y contrato.</p>
+                      <div class="about-features">
+                          <div class="about-feature"><i class="fas fa-bolt"></i><span>Proceso en menos de 30 minutos</span></div>
+                          <div class="about-feature"><i class="fas fa-scale-balanced"></i><span>Tasaciones justas y transparentes</span></div>
+                          <div class="about-feature"><i class="fas fa-shield-alt"></i><span>Custodia segura de tus artículos</span></div>
+                          <div class="about-feature"><i class="fas fa-file-signature"></i><span>Contratos claros, sin letra chica</span></div>
+                      </div>
+                      <div class="about-stats">
+                          <span class="stat-pill"><i class="fas fa-users me-2"></i>+500 clientes</span>
+                          <span class="stat-pill"><i class="fas fa-star me-2"></i>4.8/5 satisfacción</span>
+                          <span class="stat-pill"><i class="fas fa-clock me-2"></i>Atención inmediata</span>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-6">
+                  <img src="/img/prest.jpg" alt="PRÉSTAMOS PERICO" class="img-fluid rounded shadow about-img">
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-5 faq-section">
+      <div class="container">
+          <div class="section-title">
+              <h2>Preguntas Frecuentes</h2>
+              <p class="section-desc">Resolvemos todas tus dudas sobre nuestros préstamos con empeño</p>
+          </div>
+          <div class="faq-card">
+              <div class="accordion" id="faqAccordion">
+                  <div class="accordion-item">
+                      <h2 class="accordion-header">
+                          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">
+                              ¿Cuáles son los requisitos para acceder al efectivo?
+                          </button>
+                      </h2>
+                      <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                          <div class="accordion-body">
+                              Ser mayor de 18 años, traer tu DNI vigente y en buenas condiciones, y traer alguno de los artículos que nosotros custodiamos y que cumpla con las condiciones que exigimos.
+                          </div>
+                      </div>
+                  </div>
+                  <div class="accordion-item">
+                      <h2 class="accordion-header">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                              ¿A cuánto efectivo puedo acceder?
+                          </button>
+                      </h2>
+                      <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                          <div class="accordion-body">
+                              El monto depende de la tasación del artículo a custodiar. Mientras más alto es su valor, a más efectivo accedes. Contamos con montos desde $2,000 hasta $70,000 dependiendo del artículo.
+                          </div>
+                      </div>
+                  </div>
+                  <div class="accordion-item">
+                      <h2 class="accordion-header">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                              ¿Cómo recibo el efectivo?
+                          </button>
+                      </h2>
+                      <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                          <div class="accordion-body">
+                              El efectivo se entrega inmediatamente después de la tasación y firma de contrato, en nuestras oficinas de forma presencial.
+                          </div>
+                      </div>
+                  </div>
+                  <div class="accordion-item">
+                      <h2 class="accordion-header">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                              ¿Cuánto tiempo puedo tener mi artículo guardado?
+                          </button>
+                      </h2>
+                      <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                          <div class="accordion-body">
+                              El plazo standard es de 30 días, renovable las veces que quieras en periodos iguales de 30 días.
+                          </div>
+                      </div>
+                  </div>
+                  <div class="accordion-item">
+                      <h2 class="accordion-header">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">
+                              ¿Cómo retiro mi artículo guardado?
+                          </button>
+                      </h2>
+                      <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                          <div class="accordion-body">
+                              Debes acercarte a nuestras oficinas, previo pago del capital del préstamo más los intereses acordados en el contrato.
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+      <div class="container">
+          <div class="section-title">
+              <h2 class="text-white">Contactanos</h2>
+              <p class="lead">Estamos ubicados en Ciudad Perico, Jujuy</p>
+          </div>
+          <div class="row">
+              <div class="col-md-4 mb-5">
+                  <div class="contact-info">
+                      <div class="contact-icon">
+                          <i class="fas fa-map-marker-alt"></i>
+                      </div>
+                      <h3>Dirección</h3>
+                      <p>Perico, Jujuy</p>
+                  </div>
+              </div>
+              <div class="col-md-4 mb-5">
+                  <div class="contact-info">
+                      <div class="contact-icon">
+                          <i class="fab fa-whatsapp"></i>
+                      </div>
+                      <h3>WhatsApp</h3>
+                      <p><a href="https://api.whatsapp.com/send?phone=543885970486&text=Hola!!%20necesito%20un%20prestamo" class="text-white">3885970486</a></p>
+                  </div>
+              </div>
+              <div class="col-md-4 mb-5">
+                  <div class="contact-info">
+                      <div class="contact-icon">
+                          <i class="fas fa-envelope"></i>
+                      </div>
+                      <h3>Email</h3>
+                      <p>prestamosperico@gmail.com</p>
+                  </div>
+              </div>
+          </div>
+          <div class="row mt-5">
+              <div class="col-12">
+                  <div class="map-container">
+                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d549.9575523634095!2d-65.10809060688953!3d-24.390911380213275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x941bacd787f54e0d%3A0x6fa449e0fe02ce58!2sAv.%20Buenos%20Aires%2050%2C%20Perico%2C%20Jujuy!5e0!3m2!1ses!2sar!4v1675526800018!5m2!1ses!2sar" width="100%" height="400" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-4 mb-4">
+                  <h3 class="mb-4">PRÉSTAMOS PERICO</h3>
+                  <p>Ofrecemos préstamos personales con empeño de manera rápida, segura y con las mejores condiciones del mercado.</p>
+              </div>
+              <div class="col-lg-2 col-md-4 mb-4">
+                  <h5 class="mb-4">Enlaces</h5>
+                  <ul class="footer-links">
+                      <li><a href="#how-it-works">¿Cómo funciona?</a></li>
+                      <li><a href="#about">¿Quiénes Somos?</a></li>
+                      <li><a href="#items">Artículos</a></li>
+                      <li><a href="#faq">Preguntas Frecuentes</a></li>
+                      <li><a href="#contact">Contacto</a></li>
+                  </ul>
+              </div>
+              <div class="col-lg-3 col-md-4 mb-4">
+                  <h5 class="mb-4">Contacto</h5>
+                  <ul class="footer-links">
+                      <li><i class="fas fa-map-marker-alt me-2"></i> Perico, Jujuy</li>
+                      <li><i class="fab fa-whatsapp me-2"></i> 3885970486</li>
+                      <li><i class="fas fa-envelope me-2"></i> prestamosperico@gmail.com</li>
+                  </ul>
+              </div>
+              <div class="col-lg-3 col-md-4 mb-4">
+                  <h5 class="mb-4">Síguenos</h5>
+                  <div class="social-links">
+                      <a href="https://www.facebook.com/PERICO2022PRESTAMOS" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                      <a href="#"><i class="fab fa-instagram"></i></a>
+                      <a href="#"><i class="fab fa-twitter"></i></a>
+                  </div>
+              </div>
+          </div>
+          <hr class="my-4">
+          <div class="row align-items-center">
+              <div class="col-md-6">
+                  <p class="mb-0">&copy; 2023 PRÉSTAMOS PERICO. Todos los derechos reservados.</p>
+              </div>
+              <div class="col-md-6 text-md-end">
+                  <p class="mb-0">Creado por: <a href="https://adasoft.com.ar" target="_blank" class="text-white">adasoft.com.ar</a></p>
+          </div>
+      </div>
+  </footer>
+
+  
+    <!-- Bootstrap & Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    
+    <!-- Floating WhatsApp Button -->
+    <a class="whatsapp-float" href="https://api.whatsapp.com/send?phone=543885970486&text=Hola!!%20necesito%20un%20prestamo" target="_blank" aria-label="Chatear por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu when clicking a link
+                    const navbarToggler = document.querySelector('.navbar-toggler');
+                    const navbarCollapse = document.querySelector('.navbar-collapse');
+                    
+                    if (navbarCollapse.classList.contains('show')) {
+                        navbarToggler.click();
+                    }
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Initialize scrollspy for active nav links
+        const scrollSpy = new bootstrap.ScrollSpy(document.body, {
+            target: '#navbarNav',
+            offset: 100
+        });
+        
+        // Add animation to elements on scroll
+        const animateOnScroll = function() {
+            const elements = document.querySelectorAll('.feature-card, .item-card, .testimonial-card, .product-card, .about-card, .about-feature, .faq-card');
+            
+            elements.forEach(element => {
+                const position = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (position < screenPosition) {
+                    element.style.opacity = 1;
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Set initial state for animated elements
+        document.querySelectorAll('.feature-card, .item-card, .testimonial-card, .product-card, .about-card, .about-feature, .faq-card').forEach(element => {
+            element.style.opacity = 0;
+            element.style.transform = 'translateY(50px)';
+            element.style.transition = 'all 0.6s ease-out';
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        // Trigger once on load
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
 </html>
